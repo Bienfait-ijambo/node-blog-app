@@ -1,0 +1,104 @@
+input CreatePostInput {
+  title: String!
+  content: String!
+}
+type CreatePostResponse {
+  id: ID!
+  title: String!
+  content: String!
+}
+type Mutation {
+  createPost(input: CreatePostInput!): CreatePostResponse!
+}
+
+  type Query {
+    posts: [CreatePostResponse]
+  }input LoginInput{
+    email:String!
+    password:String!
+
+}
+
+
+type Tokens{
+    accessToken:String
+    refreshToken:String
+}
+
+type CreateUserLoginResponse{
+    id:Int
+    email:String
+    # userName:String
+    # image:String
+    # role:String
+}
+
+
+
+
+
+
+type AuthReturnType{
+
+    user:CreateUserLoginResponse
+    # tokens:Tokens
+}
+
+
+
+type Mutation{
+    loginUser(input:LoginInput!):AuthReturnType
+   
+}
+
+
+
+
+
+ 
+
+
+
+input CreateUserInput{
+    email:String! 
+    password:String! 
+}
+
+
+type CreateUserResponse{
+    id:ID!
+    email:String! 
+    role:String! 
+}
+input UpdateUserInput{
+    id:Int!
+    userName:String! 
+}
+type CreateUpdateResponse{
+    success:Boolean!
+}
+type Mutation{
+    createUser(input:CreateUserInput!): CreateUserResponse!
+    updateUser(input:UpdateUserInput!): CreateUpdateResponse!
+
+}
+
+type User {
+  id: Int!
+  userName: String
+  email: String!
+}
+input SearchUserInput {
+  userName: String!
+  page: Int!
+}
+
+type CreateGetUserResponse{
+   users:[User!]!
+   count:Int!
+   totalPages:Int!
+
+}
+type Query {
+  getUsers(input: SearchUserInput!): CreateGetUserResponse!
+}
